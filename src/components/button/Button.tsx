@@ -14,11 +14,11 @@ export const Button = ({
     const getButtonStyles = () => {
         switch (variant) {
             case 'primary':
-                return "w-full px-4 py-1 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500";
+                return "w-44 px-4 py-1 text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light rounded-md";
             case 'secondary':
-                return "w-full px-4 py-1 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400";
+                return "w-60 px-4 py-1 text-white bg-secondary hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light rounded-md";
             default:
-                return "w-full px-4 py-1 border-2 border-black rounded-md hover:bg-gray-300";
+                return "";
         }
     };
 

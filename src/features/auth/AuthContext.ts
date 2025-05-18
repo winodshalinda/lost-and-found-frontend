@@ -8,11 +8,4 @@ interface AuthContextType {
     logout: () => void;
 }
 
-export const AuthContext=createContext<AuthContextType>(
-    {
-        isAuthenticated: false,
-        userRole: null,
-        login: () => {},
-        logout: () => {}
-    }
-);
+export const AuthContext=createContext<AuthContextType|undefined>(undefined);

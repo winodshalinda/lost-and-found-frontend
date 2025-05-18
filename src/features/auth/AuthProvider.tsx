@@ -1,7 +1,8 @@
-import {ReactNode, useEffect, useState} from "react";
+import {ReactNode, useCallback, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {AuthContext} from "./AuthContext";
 import {Role} from "../../types/SignUpIF";
+import {setUnauthorizedHandler} from "../../api/api";
 
 export const AuthProvider = ({children}: { children: ReactNode }) => {
     const navigate = useNavigate();
@@ -11,6 +12,9 @@ export const AuthProvider = ({children}: { children: ReactNode }) => {
 
     useEffect(() => {
         const token = localStorage.getItem('uoxToken');
+        const currentPath = window.location.pathname;
+        const publicRoutes = ['/sign-in', '/sign-up']; // Define public routes
+
         if (token) {
             setIsAuthenticated(!!token);
 
@@ -19,9 +23,9 @@ export const AuthProvider = ({children}: { children: ReactNode }) => {
                 const extractedRole = decodedToken.roles.replace("ROLE_", "");
                 setUserRoleByDecode(extractedRole);
             }
-
-        } else {
-            navigate("/sign-in")
+        } else if (!publicRoutes.includes(currentPath)) {
+            // Only redirect to sign-in if not on a public route
+            navigate("/sign-in");
         }
     }, [navigate]);
 
@@ -37,11 +41,12 @@ export const AuthProvider = ({children}: { children: ReactNode }) => {
 
     }
 
-    const logout = () => {
+    const logout =useCallback( () => {
         localStorage.removeItem('uoxToken');
         setIsAuthenticated(false);
         setUserRole(null);
-    }
+        navigate("/sign-in");
+    },[navigate])
 
     const setUserRoleByDecode = (role: string) => {
         switch (role) {
@@ -50,6 +55,11 @@ export const AuthProvider = ({children}: { children: ReactNode }) => {
             case "STAFF": setUserRole(Role.STAFF);break;
         }
     }
+
+    // Set up the unauthorized handler to use the logout function
+    useEffect(() => {
+        setUnauthorizedHandler(logout);
+    }, [logout]);
 
     return (
         <AuthContext.Provider value={{isAuthenticated, userRole, login, logout}}>

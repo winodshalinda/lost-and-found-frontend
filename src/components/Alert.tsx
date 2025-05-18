@@ -10,7 +10,7 @@ export const Alert = ({title, message, visibility = false, type, onClose}: Alert
     switch (type) {
         case 'success':
             return (
-                <div hidden={!visibility} role="alert" className="rounded-md border border-gray-300 bg-white p-4 shadow-sm">
+                <div hidden={!visibility} role="alert" className="w-full rounded-md border border-gray-300 bg-white px-2 py-1 shadow-sm">
                     <div className="flex items-start gap-4">
                         <div className="flex-1">
                             {title && <strong className="font-medium text-green-900"> {title} </strong>}
@@ -18,7 +18,7 @@ export const Alert = ({title, message, visibility = false, type, onClose}: Alert
                         </div>
 
                         <button
-                            className="-m-3 rounded-full p-1.5 text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-700"
+                            className="rounded-full p-1.5 text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-700"
                             type="button"
                             aria-label="Dismiss alert"
                             onClick={onClose}
@@ -42,7 +42,7 @@ export const Alert = ({title, message, visibility = false, type, onClose}: Alert
 
         case 'error':
             return (
-                <div hidden={!visibility} role="alert" className="rounded-md border border-gray-300 bg-red-100  p-4 shadow-sm">
+                <div hidden={!visibility} role="alert" className="w-full rounded-md border border-gray-300 bg-red-100 px-4 py-1.5 shadow-sm">
                     <div className="flex items-start gap-4">
                         <div className="flex-1">
                             {title && <strong className="font-medium text-red-900"> {title} </strong>}
@@ -50,7 +50,7 @@ export const Alert = ({title, message, visibility = false, type, onClose}: Alert
                         </div>
 
                         <button
-                            className="-m-3 rounded-full p-1.5 text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-700"
+                            className="rounded-full text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-700"
                             type="button"
                             aria-label="Dismiss alert"
                             onClick={onClose}

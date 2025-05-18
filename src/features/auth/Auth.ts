@@ -2,16 +2,11 @@ import { SignInIF } from "../../types/SignInIF";
 import axios from "axios";
 import {ApiResponse} from "../../types/ApiResponse";
 import {SignUpIF} from "../../types/SignUpIF";
-
-const baseURL = "http://localhost:4444/laf/api/v1/auth"
+import api from "../../api/api";
 
 const SignInReq = async (data: SignInIF):Promise<ApiResponse<any>> => {
-
     try {
-        const response = await axios.post(
-            `${baseURL}/login`,
-            data
-        );
+        const response = await api.post('/auth/login', data);
         return {data:response.data.token, error: null}
     } catch (error) {
         if(axios.isAxiosError(error)){
@@ -26,10 +21,7 @@ const SignInReq = async (data: SignInIF):Promise<ApiResponse<any>> => {
 
 const SignUpReq = async (data: SignUpIF):Promise<ApiResponse<any>> => {
     try {
-        const response = await axios.post(
-            `${baseURL}/register`,
-            data
-        )
+        const response = await api.post('/auth/register', data);
         return {data:response.data.token, error: null}
     }catch (error) {
         if(axios.isAxiosError(error)){
