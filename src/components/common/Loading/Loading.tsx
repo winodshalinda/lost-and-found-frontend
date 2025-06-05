@@ -5,12 +5,7 @@ interface LoadingProps {
     size?: 'sm' | 'md' | 'lg';
 }
 
-export const Loading = ({
-    loading,
-    color = '#10b981',
-    fullScreen = false,
-    size = 'md'
-}: LoadingProps) => {
+export const Loading = ({loading, color = '#10b981', fullScreen = false, size = 'md'}: LoadingProps) => {
     if (!loading) return null;
 
     const sizeClasses = {

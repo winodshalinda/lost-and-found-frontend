@@ -1,16 +1,18 @@
 interface AlertProps {
     title?: string | null;
     message: string | null;
+    className?: string;
     visibility: boolean;
     type: 'success' | 'error';
     onClose?: () => void;
 }
 
-export const Alert = ({title, message, visibility = false, type, onClose}: AlertProps) => {
+export const Alert = ({title, message, visibility = false, type, onClose, className}: AlertProps) => {
     switch (type) {
         case 'success':
             return (
-                <div hidden={!visibility} role="alert" className="w-full rounded-md border border-gray-300 bg-white px-2 py-1 shadow-sm">
+                <div hidden={!visibility} role="alert"
+                     className={`${className} w-full rounded-md border border-gray-300 bg-white px-2 py-1 shadow-sm`}>
                     <div className="flex items-start gap-4">
                         <div className="flex-1">
                             {title && <strong className="font-medium text-green-900"> {title} </strong>}
@@ -42,7 +44,8 @@ export const Alert = ({title, message, visibility = false, type, onClose}: Alert
 
         case 'error':
             return (
-                <div hidden={!visibility} role="alert" className="w-full rounded-md border border-gray-300 bg-red-100 px-4 py-1.5 shadow-sm">
+                <div hidden={!visibility} role="alert"
+                     className={`${className} w-full rounded-md border border-gray-300 bg-red-100 px-4 py-1.5 shadow-sm`}>
                     <div className="flex items-start gap-4">
                         <div className="flex-1">
                             {title && <strong className="font-medium text-red-900"> {title} </strong>}

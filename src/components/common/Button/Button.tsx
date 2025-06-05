@@ -1,16 +1,11 @@
-import React, {ReactNode} from "react";
+import {ButtonHTMLAttributes, ReactNode} from "react";
 
-interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'primary' | 'secondary';
     children: ReactNode;
 }
 
-export const Button = ({
-    variant,
-    className = '', 
-    children, 
-    ...rest
-}: ButtonProps) => {
+export const Button = ({variant, className = '', children, ...rest}: ButtonProps) => {
     const getButtonStyles = () => {
         switch (variant) {
             case 'primary':

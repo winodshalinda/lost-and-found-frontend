@@ -1,9 +1,10 @@
 import {ChangeEvent, TextareaHTMLAttributes} from "react";
 
-interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement>{
+interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     className?: string;
     onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
+
 export const TextArea = ({className, onChange, ...props}: TextAreaProps) => {
     return (
         <div className={className}>
