@@ -1,12 +1,12 @@
-import {ChangeEvent,FormEvent, useState} from "react";
-import {SignUpIF} from "../../types/SignUpIF";
-import {SignUpReq} from "../../features/auth/Auth";
-import {useAuth} from "../../features/auth/hooks/useAuth";
+import {ChangeEvent, FormEvent, useState} from "react";
+import {SignUpIF} from "../../../types/SignUpIF";
+import {SignUpReq} from "../api/Auth";
+import {useAuth} from "../hooks/useAuth";
 import {Link, useNavigate} from "react-router-dom";
-import {Alert} from "../../components/Alert";
-import {Button} from "../../components/button/Button";
-import {TextField} from "../../components/textfield/TextField";
-import {Logo} from "../../components/Logo";
+import {Alert} from "../../../components/common/Alert";
+import {Button} from "../../../components/common/Button";
+import {TextField} from "../../../components/common/Input";
+import {Logo} from "../../../components/common/Logo";
 
 export const SignUp = () => {
 
@@ -46,7 +46,7 @@ export const SignUp = () => {
 
     const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if(!e.currentTarget.checkValidity()){
+        if (!e.currentTarget.checkValidity()) {
             setEr("Please fill out all fields");
             setOpenAlert(true);
             return;
@@ -79,7 +79,8 @@ export const SignUp = () => {
                     <Logo className={"w-auto max-h-32 mb-4"}/>
                     <h1 className="text-3xl font-bold text-gray-800">Sign Up</h1>
                     <p className="mt-2 text-center text-gray-600">Sign up to access your account</p>
-                    <form className={"flex flex-col items-center gap-4 mt-2"} onSubmit={handleOnSubmit} noValidate={true}>
+                    <form className={"flex flex-col items-center gap-4 mt-2"} onSubmit={handleOnSubmit}
+                          noValidate={true}>
 
                         <Alert message={er} visibility={openAlert} type={"error"} onClose={() => {
                             setOpenAlert(false)

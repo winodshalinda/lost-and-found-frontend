@@ -1,9 +1,9 @@
 import {ReactNode, useCallback, useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {AuthContext} from "./AuthContext";
-import {Role} from "../../types/SignUpIF";
-import {setUnauthorizedHandler} from "../../api/api";
-import {Loading} from "../../components/Loading";
+import {Role} from "../../../types/SignUpIF";
+import {setUnauthorizedHandler} from "../../../services/api";
+import {Loading} from "../../../components/common/Loading";
 
 export const AuthProvider = ({children}: { children: ReactNode }) => {
     const navigate = useNavigate();

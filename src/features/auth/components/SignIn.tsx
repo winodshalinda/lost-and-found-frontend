@@ -1,12 +1,12 @@
 import {ChangeEvent, FormEvent, useState} from "react";
-import {SignInIF} from "../../types/SignInIF";
-import {SignInReq} from "../../features/auth/Auth";
-import {useAuth} from "../../features/auth/hooks/useAuth";
+import {SignInIF} from "../../../types/SignInIF";
+import {SignInReq} from "../api/Auth";
+import {useAuth} from "../hooks/useAuth";
 import {Link, useNavigate} from "react-router-dom";
-import {Button} from "../../components/button/Button";
-import { Logo } from "../../components/Logo";
-import {TextField} from "../../components/textfield/TextField";
-import {Alert} from "../../components/Alert";
+import {Button} from "../../../components/common/Button";
+import {Logo} from "../../../components/common/Logo";
+import {TextField} from "../../../components/common/Input";
+import {Alert} from "../../../components/common/Alert";
 
 export const SignIn = () => {
 
@@ -27,7 +27,7 @@ export const SignIn = () => {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if(!e.currentTarget.checkValidity()){
+        if (!e.currentTarget.checkValidity()) {
             setError("Please fill out all fields");
             return;
         }
@@ -56,7 +56,7 @@ export const SignIn = () => {
                     <div className="flex flex-col space-y-4">
                         <div className={'flex flex-col items-center'}>
                             {er && (
-                                <Alert message={er} visibility={true} type={"error"} onClose={()=>setError(null)}/>
+                                <Alert message={er} visibility={true} type={"error"} onClose={() => setError(null)}/>
                             )}
                             <label htmlFor="email" className="block text-sm text-center font-medium text-gray-700">
                                 Email Address
@@ -72,7 +72,8 @@ export const SignIn = () => {
                                 onChange={onFormChange}
                             />
 
-                            <label htmlFor="password" className="block text-sm mt-3 text-center font-medium text-gray-700">
+                            <label htmlFor="password"
+                                   className="block text-sm mt-3 text-center font-medium text-gray-700">
                                 Password
                             </label>
                             <TextField
