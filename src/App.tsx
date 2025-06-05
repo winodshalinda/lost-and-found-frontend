@@ -7,6 +7,7 @@ import {Role} from './types/SignUpIF';
 import ForbiddenPage from './pages/ForbiddenPage';
 import {ItemForm} from "./components/item/ItemForm";
 import {RequestTable} from "./components/request/RequestTable";
+import {UserTable} from "./components/user/UserTable";
 
 function App() {
     return (
@@ -20,6 +21,14 @@ function App() {
                         <Route path='items/edit-item/:editItem' element={<ItemForm/>}/>
 
                         <Route path='requests/:requestTableState' element={<RequestTable/>}/>
+
+                        <Route
+                            path='all-users'
+                            element={<RoleBasedRoute allowedRoles={[Role.ADMIN]}/>}
+                        >
+                            <Route index element={<UserTable/>}/>
+                        </Route>
+
                     </Route>
                     <Route path='/sign-in' element={<SignIn/>}/>
                     <Route path='/sign-up' element={<SignUp/>}/>
